@@ -1,11 +1,12 @@
 // App.js
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AuthProvider, AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
+import { AuthContext, AuthProvider } from "./context/AuthContext";
 
 import LoginScreen from "./screens/LoginScreen";
-import Dashboard from "./screens/DashboardScreen";
+// import Dashboard from "./screens/DashboardScreen";
+import Tabs from "./navigation/Tabs";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +18,7 @@ function Routes() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {user ? (
-        <Stack.Screen name="Dashboard" component={Dashboard} />
+        <Stack.Screen name="Home" component={Tabs} />
       ) : (
         <Stack.Screen name="Login" component={LoginScreen} />
       )}

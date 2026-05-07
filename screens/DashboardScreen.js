@@ -1,20 +1,19 @@
 // screens/Dashboard.js
 import { useEffect, useState } from "react";
 import {
-  View,
-  Text,
   ActivityIndicator,
   FlatList,
   StyleSheet,
+  Text
 } from "react-native";
-import api from "../services/api";
+import { SafeAreaView } from "react-native-safe-area-context";
 import DayTabs from "../components/DayTabs";
 import ExerciseCard from "../components/ExerciseCard";
+import api from "../services/api";
 
 export default function Dashboard() {
   const [routine, setRoutine] = useState(null);
   const [selectedDay, setSelectedDay] = useState(0);
-
   useEffect(() => {
     fetchRoutine();
   }, []);
@@ -33,30 +32,39 @@ export default function Dashboard() {
   const day = routine.days[selectedDay];
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{routine.name}</Text>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.buttonText}>{routine.name}</Text>
 
       {/* 👉 Tabs de días */}
-      <DayTabs
+      <DayTabs 
         days={routine.days}
         selected={selectedDay}
         onChange={setSelectedDay}
       />
 
       {/* 👉 Lista ejercicios */}
-      <FlatList
+      <FlatList 
         data={day.exercises}
         keyExtractor={(_, i) => i.toString()}
         renderItem={({ item }) => (
           <ExerciseCard item={item} />
         )}
       />
-    </View>
+  
+    </SafeAreaView>
   );
 }
 
 // screens/Dashboard styles
 export const styles = StyleSheet.create({
+  
+  container: {
+    flex: 1,
+    backgroundColor: "#0f172a",
+    padding: 20,
+    paddingbottom: 150,
+  },
+
   dayCard: {
     backgroundColor: "#020617",
     padding: 15,
@@ -103,5 +111,7 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontWeight: "bold",
+    paddingBottom: 10,
+    fontSize: 20, 
   },
 });

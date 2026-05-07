@@ -1,18 +1,22 @@
 // components/DayTabs.js
-import { ScrollView, TouchableOpacity, Text } from "react-native";
+import { ScrollView, Text, TouchableOpacity } from "react-native";
 
 export default function DayTabs({ days, selected, onChange }) {
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{
+            padding: 20}} >
       {days.map((d, i) => (
         <TouchableOpacity
           key={i}
           onPress={() => onChange(i)}
           style={{
-            padding: 10,
+            padding: 20,
             marginRight: 10,
-            borderRadius: 10,
+            borderRadius: 5,
             backgroundColor: selected === i ? "#38bdf8" : "#1e293b",
+            maxHeight: 50,
+            justifyContent: "center",
+            alignItems: "center", 
           }}
         >
           <Text style={{ color: selected === i ? "black" : "white" }}>

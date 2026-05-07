@@ -1,10 +1,8 @@
 // screens/LoginScreen.js
-import { StyleSheet } from "react-native";
-import { colors } from "../theme/colors";
 import { useContext, useState } from "react";
-import { View, TextInput, Button, Text,TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AuthContext } from "../context/AuthContext";
-
+import { colors } from "../theme/colors";
 
 
 export default function LoginScreen() {
@@ -34,9 +32,9 @@ export default function LoginScreen() {
       </TouchableOpacity>
     </View>
   );
+
 }
 // screens/LoginScreen.js (styles)
-
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
