@@ -6,7 +6,7 @@ export default function DayTabs({ days, selected, onChange }) {
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{
             padding: 20}} >
-      {days.map((d, i) => (
+      {days?.map((d, i) => (
         <TouchableOpacity
           key={i}
           onPress={() => onChange(i)}

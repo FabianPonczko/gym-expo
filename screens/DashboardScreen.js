@@ -7,10 +7,12 @@ import {
   Text
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 import DayTabs from "../components/DayTabs";
 import ExerciseCard from "../components/ExerciseCard";
 import { AuthContext } from "../context/AuthContext";
 import api from "../services/api";
+
 
 export default function Dashboard() {
   const { user } = useContext(AuthContext);
@@ -29,7 +31,12 @@ export default function Dashboard() {
     }
   };
 
-  if (!routine) return <ActivityIndicator size="large" />;
+  if (!routine) return (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.buttonText}>Usuario "{user.name}"sin rutina cargada</Text>
+      <ActivityIndicator size={""}/>
+    </SafeAreaView>
+  );
 
   const day = routine.days[selectedDay];
 

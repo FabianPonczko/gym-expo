@@ -80,7 +80,7 @@ export default function WeightModal({visible,  onClose, exercise }) {
               }}
               onPress={save}
               >
-              <Text style={{ textAlign: "center" }}>
+              <Text style={{ textAlign: "center",color:"white" }}>
                 Guardar
               </Text>
             </TouchableOpacity>
@@ -93,7 +93,7 @@ export default function WeightModal({visible,  onClose, exercise }) {
               }}
               onPress={()=>onClose()}
               >
-              <Text style={{ textAlign: "center" }}>
+              <Text style={{ textAlign: "center",color:"white" }}>
                 Cancelar
               </Text>
             </TouchableOpacity>
