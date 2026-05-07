@@ -23,7 +23,7 @@ const [selectedExercise, setSelectedExercise] = useState("");
       </Text>
 
       <Text style={{ color: "#94a3b8" }}>
-        {item.sets} x {item.reps} • {item.weight || 0} kg
+        {item.sets} x {item.reps} 
       </Text>
 
       <TouchableOpacity
