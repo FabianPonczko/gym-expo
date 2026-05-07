@@ -19,7 +19,6 @@ export default function ProgressScreen() {
     try {
       const res = await api.get("/progress/by-exercise");
       setHistory(res.data);
-      console.log(res.data);
     } catch (err) {
       console.log(err);
     }

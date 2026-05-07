@@ -21,9 +21,8 @@ export default function ProgressUser({userId}) {
   const fetchHistory = async (userId) => {
     try {
        const res = await api.get(`/progress/user/${userId}`);
-    setUserProgress(res.data);
-      
-
+       const progreso = [...res.data].filter(c=>c.weight !== 0).sort((a,b)=>a.exercise.localeCompare(b.exercise))
+       setUserProgress(progreso);
     } catch (err) {
       console.log(err);
     }

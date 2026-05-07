@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import {
-    FlatList,
-    Modal,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  FlatList,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from "react-native";
 
 import api from "../services/api";
@@ -28,8 +28,9 @@ export default function ExerciseHistoryModal({
       const res = await api.get(
         `/progress/by-exercise?exercise=${exercise}`
       );
+      const pesos = [...res.data].filter(a=>a.weight !==0)
 
-      setHistory(res.data);
+      setHistory(pesos);
 
     } catch (err) {
       console.log(err);
