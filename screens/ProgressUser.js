@@ -4,6 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View
 } from "react-native";
 
@@ -27,6 +28,14 @@ export default function ProgressUser({userId}) {
       console.log(err);
     }
   };
+  
+  const borrarHistorial = async (user)=>{
+    try{
+      const res = await api.delete(`/progress/${userId}`)
+    }catch(err){
+      console.log(err)
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -68,8 +77,22 @@ export default function ProgressUser({userId}) {
           </View>
         ))}
 
+        <TouchableOpacity
+                 onPress={borrarHistorial}
+                style={{
+                  display:"flex",
+                  alignItems:"center",
+                  marginTop: 20,
+                  backgroundColor: "#ef4444",
+                  padding: 15,
+                  borderRadius: 12
+                }}
+              >
+                <Text style={{ color: "white" }}>
+                  Borrar historial
+                </Text>
+              </TouchableOpacity>
       </ScrollView>
-
     </SafeAreaView>
   );
 }

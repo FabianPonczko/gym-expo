@@ -19,9 +19,9 @@ export default function Tabs() {
         tabBarStyle: {
           backgroundColor: "#0f172a",
           borderTopWidth: 0,
-          height: 70,
-          paddingBottom: 100,
-          paddingTop: 100,
+          height: 120,
+          paddingBottom: 10,
+          
         },
 
         tabBarActiveTintColor: "#22c55e",
