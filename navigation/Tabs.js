@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import DashboardScreen from "../screens/DashboardScreen";
 import ProfileScreen from "../screens/ProfileScreen";
-import ProgressScreen from "../screens/ProgressScreen";
+import ProgressUser from "../screens/ProgressUser";
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +37,7 @@ export default function Tabs() {
 
       <Tab.Screen
         name="Progreso"
-        component={ProgressScreen}
+        component={ProgressUser}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="stats-chart" size={size} color={color} />
