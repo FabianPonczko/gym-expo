@@ -8,6 +8,7 @@ import {
   View,
 } from "react-native";
 import api from "../services/api";
+import { colors } from "../theme/colors";
 
 export default function WeightModal({visible,  onClose, exercise }) {
   const [weight, setWeight] = useState("");
@@ -39,28 +40,28 @@ export default function WeightModal({visible,  onClose, exercise }) {
         <View style={{
           display:"flex",
           alignItems:"center",
-          backgroundColor: "#111",
+          backgroundColor: "rgba(73, 85, 100, 0.38)",
           margin: 20,
           padding: 20,
           borderRadius: 12,
           marginBottom:"50%"
         }}>
-            <Text style={{ color: "white", marginBottom: 10,fontSize:20 }}>
+            <Text style={{ color: "white", marginBottom: 10 ,fontSize:20}}>
               {exercise}
             </Text>
-
+            
             <TextInput 
               placeholder="Peso"
               placeholderTextColor="#888"
               onChangeText={setWeight}
-              style={{ color: "white", marginBottom: 10 ,maxWidth:30}}
+              style={{color: "white", marginBottom: 10 ,maxWidth:50}}
             />
 
             <TextInput
               placeholder="Reps"
               placeholderTextColor="#888"
               onChangeText={setReps}
-              style={{ color: "white", marginBottom: 10 ,maxWidth:30}}
+              style={{ color: "white", marginBottom: 10 ,maxWidth:50}}
             />
 
             <View 
@@ -73,26 +74,26 @@ export default function WeightModal({visible,  onClose, exercise }) {
 
           <TouchableOpacity 
               style={{
-                backgroundColor: "#38bdf8",
+                backgroundColor: colors.primary,
                 padding: 10,
                 borderRadius: 8
               }}
               onPress={save}
               >
-              <Text style={{ textAlign: "center", fontWeight: "bold" }}>
+              <Text style={{ textAlign: "center" }}>
                 Guardar
               </Text>
             </TouchableOpacity>
             
             <TouchableOpacity
               style={{
-                backgroundColor: "#d43131",
+                backgroundColor: colors.danger,
                 padding: 10,
                 borderRadius: 8
               }}
               onPress={()=>onClose()}
               >
-              <Text style={{ textAlign: "center", fontWeight: "bold" }}>
+              <Text style={{ textAlign: "center" }}>
                 Cancelar
               </Text>
             </TouchableOpacity>

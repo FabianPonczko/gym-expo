@@ -1,6 +1,7 @@
 // components/ExerciseCard.js
 import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
+import { colors } from "../theme/colors";
 import ExerciseHistoryModal from "./ExerciseHistoryModal";
 import WeightModal from "./WeightModal";
 
@@ -12,7 +13,7 @@ const [selectedExercise, setSelectedExercise] = useState("");
   return (
     <View style={{
       flex: 1,
-      backgroundColor: "#0f172a",
+      backgroundColor: colors.secundary,
       padding: 15,
       borderRadius: 12,
       marginTop: 10,
@@ -29,14 +30,14 @@ const [selectedExercise, setSelectedExercise] = useState("");
       <TouchableOpacity
         style={{
           marginTop: 10,
-          backgroundColor: "#38bdf8",
+          backgroundColor: colors.primary,
           padding: 10,
           borderRadius: 8,
           alignItems: "center"
         }}
         onPress={() => setOpen(true)}
       >
-        <Text style={{ fontWeight: "bold" }}>
+        <Text style={{ color:colors.text}}>
           💪 Registrar peso
         </Text>
       </TouchableOpacity>
@@ -44,7 +45,7 @@ const [selectedExercise, setSelectedExercise] = useState("");
       <TouchableOpacity
         style={{
             marginTop: 10,
-            backgroundColor: "#38bdf8",
+            backgroundColor: colors.primary,
             padding: 10,
             borderRadius: 8,
             alignItems: "center"
@@ -55,8 +56,8 @@ const [selectedExercise, setSelectedExercise] = useState("");
           setHistoryOpen(true);
           }}>
           
-          <Text style={{ fontWeight: "bold" }}>
-            💪 Historial
+          <Text style={{ color:colors.text}}>
+            📈  Historial
           </Text>
 
       </TouchableOpacity>

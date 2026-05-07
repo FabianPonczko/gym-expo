@@ -1,5 +1,5 @@
 // screens/Dashboard.js
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -9,9 +9,11 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import DayTabs from "../components/DayTabs";
 import ExerciseCard from "../components/ExerciseCard";
+import { AuthContext } from "../context/AuthContext";
 import api from "../services/api";
 
 export default function Dashboard() {
+  const { user } = useContext(AuthContext);
   const [routine, setRoutine] = useState(null);
   const [selectedDay, setSelectedDay] = useState(0);
   useEffect(() => {
@@ -33,7 +35,7 @@ export default function Dashboard() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.buttonText}>{routine.name}</Text>
+      <Text style={styles.buttonText}>{user.name}</Text>
 
       {/* 👉 Tabs de días */}
       <DayTabs 

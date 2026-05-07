@@ -1,5 +1,6 @@
 // components/DayTabs.js
 import { ScrollView, Text, TouchableOpacity } from "react-native";
+import { colors } from "../theme/colors";
 
 export default function DayTabs({ days, selected, onChange }) {
   return (
@@ -13,7 +14,7 @@ export default function DayTabs({ days, selected, onChange }) {
             padding: 20,
             marginRight: 10,
             borderRadius: 5,
-            backgroundColor: selected === i ? "#38bdf8" : "#1e293b",
+            backgroundColor: selected === i ? colors.primary : "#1e293b",
             maxHeight: 50,
             justifyContent: "center",
             alignItems: "center", 

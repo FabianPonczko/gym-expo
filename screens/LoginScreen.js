@@ -21,15 +21,23 @@ export default function LoginScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <TextInput style={styles.input} placeholder="Usuario" onChangeText={setName} />
-      <TextInput style={styles.input} placeholder="Password" secureTextEntry onChangeText={setPassword} />
+    <View 
+      style={{
+        flex:1,
+        justifyContent:"center",
+        alignItems:"center",
+        backgroundColor:colors.secondary
+        }}>
+      <View style={styles.container}>
+        <TextInput style={styles.input} placeholder="Usuario" onChangeText={setName} />
+        <TextInput style={styles.input} placeholder="Password" secureTextEntry onChangeText={setPassword} />
 
-      {error ? <Text style={{color:"red"}}  >{error}</Text> : null}
+        {error ? <Text style={{color:"red"}}  >{error}</Text> : null}
 
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Ingresar</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Ingresar</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 
@@ -37,11 +45,10 @@ export default function LoginScreen() {
 // screens/LoginScreen.js (styles)
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: colors.secondary,
     justifyContent: "center",
     padding: 20,
-  },
+    },
 
   input: {
     backgroundColor: "#334155",
