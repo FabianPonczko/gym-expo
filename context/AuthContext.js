@@ -1,6 +1,6 @@
 // context/AuthContext.js
-import { createContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createContext, useEffect, useState } from "react";
 import api from "../services/api";
 
 export const AuthContext = createContext();
@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const loadUser = async () => {
       const token = await AsyncStorage.getItem("token");
+      
 
       if (token) {
         try {

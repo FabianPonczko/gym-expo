@@ -31,7 +31,9 @@ export default function ProgressUser({userId}) {
   
   const borrarHistorial = async (user)=>{
     try{
-      const res = await api.delete(`/progress/${userId}`)
+      const res = await api.delete(`/progress/delete/${userId}`);
+      setUserProgress([]);
+      alert("Historial eliminado");
     }catch(err){
       console.log(err)
     }
