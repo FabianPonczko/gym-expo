@@ -11,16 +11,16 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import api from "../services/api";
 
-export default function ProgressUser(login) {
+export default function ProgressUser({userId}) {
   const [userProgress, setUserProgress] = useState([]);
 
   useEffect(() => {
-    fetchHistory(login);
+    fetchHistory(userId);
   }, []);
 
-  const fetchHistory = async (login) => {
+  const fetchHistory = async (userId) => {
     try {
-       const res = await api.get(`/progress/user/${login}`);
+       const res = await api.get(`/progress/user/${userId}`);
     setUserProgress(res.data);
       
 

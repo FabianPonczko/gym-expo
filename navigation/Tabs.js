@@ -1,6 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import DashboardScreen from "../screens/DashboardScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import ProgressUser from "../screens/ProgressUser";
@@ -8,6 +10,7 @@ import ProgressUser from "../screens/ProgressUser";
 const Tab = createBottomTabNavigator();
 
 export default function Tabs() {
+   const { user } = useContext(AuthContext);
   return (
     <Tab.Navigator
       screenOptions={{
@@ -35,15 +38,16 @@ export default function Tabs() {
         }}
       />
 
-      <Tab.Screen
+        <Tab.Screen
         name="Progreso"
-        component={ProgressUser}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="stats-chart" size={size} color={color} />
           ),
         }}
-      />
+      >
+        {() => <ProgressUser userId={user?._id} />}
+      </Tab.Screen>
 
       <Tab.Screen
         name="Perfil"
