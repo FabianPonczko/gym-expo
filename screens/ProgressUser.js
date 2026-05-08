@@ -11,19 +11,38 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import api from "../services/api";
+import { colors } from "../theme/colors";
 
 export default function ProgressUser({userId}) {
   const [userProgress, setUserProgress] = useState([]);
+  const [groupedProgress, setGroupedProgress] = useState({});
+  const [visible, setVisible] = useState(false);
+  
+  const [selectedExercise, setSelectedExercise] = useState(null);
 
   useEffect(() => {
     fetchHistory(userId);
-  }, []);
+  }, [userProgress]);
 
   const fetchHistory = async (userId) => {
     try {
        const res = await api.get(`/progress/user/${userId}`);
        const progreso = [...res.data].filter(c=>c.weight !== 0).sort((a,b)=>a.exercise.localeCompare(b.exercise))
-       setUserProgress(progreso);
+      //  setUserProgress(progreso);
+      const grouped = progreso.reduce((acc, item) => {
+
+      if (!acc[item.exercise]) {
+        acc[item.exercise] = [];
+      }
+
+      acc[item.exercise].push(item);
+
+      return acc;
+
+    }, {});
+
+    setGroupedProgress(grouped);
+
     } catch (err) {
       console.log(err);
     }
@@ -53,7 +72,7 @@ export default function ProgressUser({userId}) {
           📈 Progreso
         </Text>
 
-        {userProgress.map((item) => (
+        {/* {userProgress.map((item) => (
           <View key={item._id} style={styles.card}>
 
             <View>
@@ -77,9 +96,46 @@ export default function ProgressUser({userId}) {
             </View>
 
           </View>
-        ))}
+        ))} */}
 
-        <TouchableOpacity
+      {!visible && Object.keys(groupedProgress).map((exercise) => (
+        <TouchableOpacity style={styles.card}
+          key={exercise}
+          onPress={() => (setSelectedExercise(exercise),setVisible(true))}
+        >
+          <Text style={styles.exercise}>🏋️ {exercise}</Text>
+        </TouchableOpacity>
+      ))
+    }
+    
+  {selectedExercise && visible &&
+  groupedProgress[selectedExercise]?.map((item) => (
+    // <View style={styles.card} key={item._id}>
+    //   <View style={styles.weight}>
+    //     <Text>{item.weight} KG</Text>
+    //     <Text>{item.reps} reps</Text>
+    //   </View>  
+    
+    // </View>
+      <View style={styles.cardProgress} key={item._id}>
+            <View  >  
+              <Text style={{fontSize: 20, fontWeight: "bold", color: colors.text}}>
+                🏋️ {item.exercise}
+              </Text>
+              <Text style={styles.date}>
+                {new Date(item.date).toLocaleDateString()}
+              </Text>
+            <View style={styles.right}>
+              <Text style={styles.weight}>
+                {item.weight} KG {item.reps} reps
+              </Text>
+            </View>  
+            </View>
+      </View>
+  ))
+}
+            {!visible?
+              <TouchableOpacity
                  onPress={borrarHistorial}
                 style={{
                   display:"flex",
@@ -94,6 +150,23 @@ export default function ProgressUser({userId}) {
                   Borrar historial
                 </Text>
               </TouchableOpacity>
+              :
+              <TouchableOpacity
+                 onPress={()=>setVisible(false)}
+                style={{
+                  display:"flex",
+                  alignItems:"center",
+                  marginTop: 20,
+                  backgroundColor: "#22c55e",
+                  padding: 15,
+                  borderRadius: 12
+                }}
+              >
+                <Text style={{ color: "white" }}>
+                  Volver a ejercicios
+                </Text>
+              </TouchableOpacity>
+            }
       </ScrollView>
     </SafeAreaView>
   );
@@ -115,7 +188,7 @@ const styles = StyleSheet.create({
 
   card: {
     backgroundColor: "#0f172a",
-
+    
     borderRadius: 24,
 
     padding: 18,
@@ -132,10 +205,22 @@ const styles = StyleSheet.create({
 
     elevation: 5,
   },
+  cardProgress: {
+    backgroundColor: "#0f172a",
+    borderRadius: 24,
+    padding: 18,
+    marginBottom: 14,
+   
+    
+    shadowColor: "#000",
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 5,
+  },
 
   exercise: {
     color: "white",
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "bold",
   },
 

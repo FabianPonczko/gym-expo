@@ -1,7 +1,6 @@
 // screens/Dashboard.js
 import { useContext, useEffect, useState } from "react";
 import {
-  ActivityIndicator,
   FlatList,
   StyleSheet,
   Text
@@ -34,7 +33,7 @@ export default function Dashboard() {
   if (!routine) return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.buttonText}>Usuario "{user.name}"sin rutina cargada</Text>
-      <ActivityIndicator size={""}/>
+  
     </SafeAreaView>
   );
 
@@ -45,7 +44,7 @@ export default function Dashboard() {
       <Text style={styles.buttonText}>{user.name}</Text>
 
       {/* 👉 Tabs de días */}
-      <DayTabs 
+      <DayTabs style={styles.dayCard}
         days={routine.days}
         selected={selectedDay}
         onChange={setSelectedDay}
@@ -71,7 +70,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#0f172a",
     padding: 20,
-    paddingbottom: 150,
+    paddingbottom: 100,
   },
 
   dayCard: {

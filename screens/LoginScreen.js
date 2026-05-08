@@ -26,7 +26,8 @@ export default function LoginScreen() {
         flex:1,
         justifyContent:"center",
         alignItems:"center",
-        backgroundColor:colors.secondary
+        backgroundColor:colors.secondary,
+        minWidth:"100%",
         }}>
       <View style={styles.container}>
         <TextInput style={styles.input} placeholder="Usuario" onChangeText={setName} />
@@ -48,6 +49,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.secondary,
     justifyContent: "center",
     padding: 20,
+    minWidth: "80%",
     },
 
   input: {

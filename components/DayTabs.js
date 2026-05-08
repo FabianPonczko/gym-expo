@@ -15,7 +15,7 @@ export default function DayTabs({ days, selected, onChange }) {
             marginRight: 10,
             borderRadius: 5,
             backgroundColor: selected === i ? colors.primary : "#1e293b",
-            maxHeight: 50,
+            minHeight: 80,
             justifyContent: "center",
             alignItems: "center", 
           }}
