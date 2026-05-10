@@ -11,22 +11,28 @@ import DayTabs from "../components/DayTabs";
 import ExerciseCard from "../components/ExerciseCard";
 import { AuthContext } from "../context/AuthContext";
 import api from "../services/api";
+import LoadingOverlay from "../components/LoadingSping";
 
 
 export default function Dashboard() {
   const { user } = useContext(AuthContext);
   const [routine, setRoutine] = useState(null);
   const [selectedDay, setSelectedDay] = useState(0);
+  const [cargando, setCargando] = useState(false);
+  
   useEffect(() => {
     fetchRoutine();
   }, []);
 
   const fetchRoutine = async () => {
+    setCargando(true)
     try {
       const res = await api.get("/users/my-routine");
       setRoutine(res.data);
     } catch (err) {
       console.log(err);
+    }finally{
+      setCargando(false)
     }
   };
 
@@ -41,6 +47,8 @@ export default function Dashboard() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <LoadingOverlay cargando={cargando}></LoadingOverlay>
+
       <Text style={styles.buttonText}>{user.name}</Text>
 
       {/* 👉 Tabs de días */}
@@ -51,7 +59,7 @@ export default function Dashboard() {
       />
 
       {/* 👉 Lista ejercicios */}
-      <FlatList 
+      <FlatList style={styles.exerciseCard}
         data={day.exercises}
         keyExtractor={(_, i) => i.toString()}
         renderItem={({ item }) => (
@@ -70,14 +78,14 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#0f172a",
     padding: 20,
-    paddingbottom: 100,
+    paddingbottom: 0,
   },
 
   dayCard: {
-    backgroundColor: "#020617",
+    backgroundColor: "#35b418",
     padding: 15,
     borderRadius: 14,
-    marginBottom: 20,
+    marginBottom: 10,
   },
 
   dayTitle: {
@@ -89,10 +97,10 @@ export const styles = StyleSheet.create({
 
   exerciseCard: {
     backgroundColor: "#1e293b",
-    padding: 12,
+    padding: 15,
     borderRadius: 12,
-    marginBottom: 10,
-  },
+    marginBottom: 20,
+    },
 
   exerciseName: {
     color: "white",

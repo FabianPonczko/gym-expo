@@ -9,6 +9,7 @@ import {
 } from "react-native";
 
 import api from "../services/api";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ExerciseHistoryModal({
   visible,
@@ -38,6 +39,8 @@ export default function ExerciseHistoryModal({
   };
 
   return (
+  
+
     <Modal visible={visible} animationType="slide">
 
       <View style={styles.container}>
@@ -66,20 +69,21 @@ export default function ExerciseHistoryModal({
 
             </View>
           )}
-        />
+          />
 
         <TouchableOpacity
           style={styles.close}
           onPress={onClose}
-        >
+          >
           <Text style={{ color: "white" }}>
-            Cerrar
+            Volver
           </Text>
         </TouchableOpacity>
 
       </View>
 
     </Modal>
+  
   );
 }
 const styles = StyleSheet.create({
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
   },
 
   close: {
-    backgroundColor: "#ef4444",
+    backgroundColor: "#22c55e",
     padding: 16,
     borderRadius: 18,
     alignItems: "center",

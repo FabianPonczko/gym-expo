@@ -19,7 +19,7 @@ export default function Tabs() {
         tabBarStyle: {
           backgroundColor: "#0f172a",
           borderTopWidth: 0,
-          height: 120,
+          height: 100,
           paddingBottom: 10,
           
         },

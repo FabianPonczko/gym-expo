@@ -4,6 +4,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { colors } from "../theme/colors";
 import ExerciseHistoryModal from "./ExerciseHistoryModal";
 import WeightModal from "./WeightModal";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ExerciseCard({ item }) {
   const [open, setOpen] = useState(false);
@@ -11,13 +12,14 @@ const [historyOpen, setHistoryOpen] = useState(false);
 const [selectedExercise, setSelectedExercise] = useState("");
 
   return (
+  
     <View style={{
       flex: 1,
       backgroundColor: colors.secundary,
-      padding: 15,
+      padding: 5,
       borderRadius: 12,
-      marginTop: 10,
-      
+      marginTop: 0,
+          
     }}>
       <Text style={{ color: "white", fontSize: 16 }}>
         {item.exercise?.name}
@@ -44,17 +46,17 @@ const [selectedExercise, setSelectedExercise] = useState("");
       
       <TouchableOpacity
         style={{
-            marginTop: 10,
-            backgroundColor: colors.primary,
-            padding: 10,
-            borderRadius: 8,
-            alignItems: "center"
-          }}
-    
-          onPress={() => {
+          marginTop: 10,
+          backgroundColor: colors.primary,
+          padding: 10,
+          borderRadius: 8,
+          alignItems: "center"
+        }}
+        
+        onPress={() => {
           setSelectedExercise(item.exercise.name);
           setHistoryOpen(true);
-          }}>
+        }}>
           
           <Text style={{ color:colors.text}}>
             📈  Historial
@@ -71,7 +73,8 @@ const [selectedExercise, setSelectedExercise] = useState("");
         visible={open}
         exercise={item.exercise?.name}
         onClose={() => setOpen(false)}
-      />
+        />
     </View>
+  
   );
 }

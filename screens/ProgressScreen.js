@@ -7,26 +7,30 @@ import {
 } from "react-native";
 
 import api from "../services/api";
+import LoadingOverlay from "../components/LoadingSping";
 
 export default function ProgressScreen() {
   const [history, setHistory] = useState([]);
-
+  const [cargando, setCargando] = useState(true)
   useEffect(() => {
     fetchHistory();
   }, []);
 
   const fetchHistory = async () => {
     try {
+      setCargando(true)
       const res = await api.get("/progress/by-exercise");
       setHistory(res.data);
     } catch (err) {
       console.log(err);
+    }finally{
+      setCargando(false)
     }
   };
 
   const renderItem = ({ item }) => (
     <View style={styles.card}>
-
+      <LoadingOverlay cargando={cargando}></LoadingOverlay>
       <View>
         <Text style={styles.exercise}>
           🏋️ {item.exercise}

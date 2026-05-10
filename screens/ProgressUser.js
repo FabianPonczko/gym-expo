@@ -12,20 +12,38 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import api from "../services/api";
 import { colors } from "../theme/colors";
+import LoadingOverlay from "../components/LoadingSping";
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
 
 export default function ProgressUser({userId}) {
   const [userProgress, setUserProgress] = useState([]);
   const [groupedProgress, setGroupedProgress] = useState({});
   const [visible, setVisible] = useState(false);
+  const [cargando, setCargando] = useState(false)
   
   const [selectedExercise, setSelectedExercise] = useState(null);
 
+  useFocusEffect(
+  useCallback(() => {
+    return () => {
+      setVisible(false);
+      setSelectedExercise(null);
+      setGroupedProgress({});
+      setUserProgress([]);
+    };
+
+  }, [])
+);
+
   useEffect(() => {
     fetchHistory(userId);
+    setSelectedExercise(null)
   }, [userProgress]);
 
   const fetchHistory = async (userId) => {
     try {
+      setCargando(true)
        const res = await api.get(`/progress/user/${userId}`);
        const progreso = [...res.data].filter(c=>c.weight !== 0).sort((a,b)=>a.exercise.localeCompare(b.exercise))
       //  setUserProgress(progreso);
@@ -45,6 +63,8 @@ export default function ProgressUser({userId}) {
 
     } catch (err) {
       console.log(err);
+    }finally{
+      setCargando(false)
     }
   };
   
@@ -60,7 +80,6 @@ export default function ProgressUser({userId}) {
 
   return (
     <SafeAreaView style={styles.container}>
-
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
@@ -71,6 +90,7 @@ export default function ProgressUser({userId}) {
         <Text style={styles.title}>
           📈 Progreso
         </Text>
+        <LoadingOverlay cargando={cargando}></LoadingOverlay>
 
         {/* {userProgress.map((item) => (
           <View key={item._id} style={styles.card}>
