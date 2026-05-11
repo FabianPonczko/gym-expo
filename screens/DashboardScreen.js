@@ -9,9 +9,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import DayTabs from "../components/DayTabs";
 import ExerciseCard from "../components/ExerciseCard";
+import LoadingOverlay from "../components/LoadingSping";
 import { AuthContext } from "../context/AuthContext";
 import api from "../services/api";
-import LoadingOverlay from "../components/LoadingSping";
 
 
 export default function Dashboard() {
@@ -62,8 +62,11 @@ export default function Dashboard() {
       <FlatList style={styles.exerciseCard}
         data={day.exercises}
         keyExtractor={(_, i) => i.toString()}
-        renderItem={({ item }) => (
-          <ExerciseCard item={item} />
+        renderItem={({ item,index}) => (
+          <ExerciseCard 
+          item={item}
+          numero={index+1}
+          />
         )}
       />
   
@@ -96,7 +99,7 @@ export const styles = StyleSheet.create({
   },
 
   exerciseCard: {
-    backgroundColor: "#1e293b",
+    // backgroundColor: "#1e293b",
     padding: 15,
     borderRadius: 12,
     marginBottom: 20,

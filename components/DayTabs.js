@@ -1,7 +1,7 @@
 // components/DayTabs.js
 import { ScrollView, Text, TouchableOpacity } from "react-native";
-import { colors } from "../theme/colors";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { colors } from "../theme/colors";
 
 export default function DayTabs({ days, selected, onChange }) {
   return (

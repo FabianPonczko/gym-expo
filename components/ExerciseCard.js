@@ -4,9 +4,8 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { colors } from "../theme/colors";
 import ExerciseHistoryModal from "./ExerciseHistoryModal";
 import WeightModal from "./WeightModal";
-import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function ExerciseCard({ item }) {
+export default function ExerciseCard({ item ,numero}) {
   const [open, setOpen] = useState(false);
 const [historyOpen, setHistoryOpen] = useState(false);
 const [selectedExercise, setSelectedExercise] = useState("");
@@ -15,14 +14,15 @@ const [selectedExercise, setSelectedExercise] = useState("");
   
     <View style={{
       flex: 1,
-      backgroundColor: colors.secundary,
+      backgroundColor: "#1e293b",
       padding: 5,
       borderRadius: 12,
       marginTop: 0,
+      marginBottom:10
           
     }}>
       <Text style={{ color: "white", fontSize: 16 }}>
-        {item.exercise?.name}
+        {numero} - {item.exercise?.name} 
       </Text>
 
       <Text style={{ color: "#94a3b8" }}>

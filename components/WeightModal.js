@@ -40,7 +40,7 @@ export default function WeightModal({visible,  onClose, exercise }) {
         <View style={{
           display:"flex",
           alignItems:"center",
-          backgroundColor: "rgba(73, 85, 100, 0.38)",
+          backgroundColor: "#1e293b",
           margin: 20,
           padding: 20,
           borderRadius: 12,
